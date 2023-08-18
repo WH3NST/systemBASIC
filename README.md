@@ -5,7 +5,7 @@ WARNING:
 Currently, the NASM macro based intermediate language produces very bad machine code and the lua processor is severely unreadable. I hope it can get everything cleaned up and more efficient eventually. The project directory also doesn't really have a structure which I want to tackle first.
 
 
-FEATURES
+FEATURES:
 Mix assembly and language code freely (theoretically), I tried this and it works but you have to put ; at the end of
 assembly statements or the lexer(?) freaks out.
 
@@ -22,7 +22,7 @@ Current assembly generator produces 100% position indipendent code. Uses RBX/BX 
 Tree-style local variables. You can define functions within functions and then access the variables of those functions from your higher functions. Functions also preserve variable names between calls, and can serve as some limited kind of struct if you don't write code in them.
 
 
-FUTURE PLANS
+FUTURE PLANS:
 Better intermediate > assembly translators, that generate better assembly code. Option for position dependent code, use of RIP releative addressing, and 32 bit support are also hoped for features. I think I will move away from purely using macro's to do this, and will move to a hybrid macro/script approach.
 
 More stuff for the language, its a bit bare right now.

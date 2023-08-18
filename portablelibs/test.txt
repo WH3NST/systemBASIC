@@ -1,0 +1,394 @@
+%line 328+1 test.bas
+chartoint:
+%line 348+1 test.bas
+
+ jmp ..@2.next
+[section .data]
+ .myARG1: dq 0
+[section .text]
+ ..@2.next:
+%line 348+1 test.bas
+
+ jmp ..@6.next
+[section .data]
+ .retval: dq 0
+[section .text]
+ ..@6.next:
+%line 530+1 test.bas
+jmp ..@9.begin
+..@9.begin:
+pop rax
+pop rdx
+pop qword rcx
+mov [.myARG1 + rbx], rcx
+push rdx
+push rax
+mov rax, [.myARG1 + rbx]
+%line 348+1 test.bas
+
+ jmp ..@11.next
+[section .data]
+ .offset: dq 48
+[section .text]
+ ..@11.next:
+%line 406+1 test.bas
+ mov rax, qword [.myARG1 + rbx]
+ sub rax, qword [.offset + rbx]
+%line 49+1 test.bas
+ mov qword [.retval + rbx], rax
+%line 343+1 test.bas
+ mov rax, qword [.retval + rbx]
+ ret
+%line 11+1 test.bas
+
+%line 328+1 test.bas
+inttochar:
+%line 348+1 test.bas
+
+ jmp ..@19.next
+[section .data]
+ .myARG1: dq 0
+[section .text]
+ ..@19.next:
+%line 530+1 test.bas
+jmp ..@22.begin
+..@22.begin:
+pop rax
+pop rdx
+pop qword rcx
+mov [.myARG1 + rbx], rcx
+push rdx
+push rax
+mov rax, [.myARG1 + rbx]
+%line 348+1 test.bas
+
+ jmp ..@24.next
+[section .data]
+ .offset: dq 48
+[section .text]
+ ..@24.next:
+%line 399+1 test.bas
+ mov rax, qword [.myARG1 + rbx]
+ add rax, qword [.offset + rbx]
+%line 49+1 test.bas
+ mov qword [.myARG1 + rbx], rax
+%line 343+1 test.bas
+ mov rax, qword [.myARG1 + rbx]
+ ret
+%line 19+1 test.bas
+
+%line 328+1 test.bas
+compstring:
+%line 348+1 test.bas
+
+ jmp ..@32.next
+[section .data]
+ .incrementer: dq 1
+[section .text]
+ ..@32.next:
+%line 359+1 test.bas
+ jmp ..@36.next
+[section .data]
+ .bufferything: db "A", 0
+[section .text]
+ ..@36.next:
+%line 348+1 test.bas
+
+ jmp ..@40.next
+[section .data]
+ .zerome: dq 0
+[section .text]
+ ..@40.next:
+%line 348+1 test.bas
+
+ jmp ..@44.next
+[section .data]
+ .ARG_1: dq 0
+[section .text]
+ ..@44.next:
+%line 348+1 test.bas
+
+ jmp ..@48.next
+[section .data]
+ .ARG_2: dq 0
+[section .text]
+ ..@48.next:
+%line 348+1 test.bas
+
+ jmp ..@52.next
+[section .data]
+ .char1: dq 0
+[section .text]
+ ..@52.next:
+%line 348+1 test.bas
+
+ jmp ..@56.next
+[section .data]
+ .char2: dq 0
+[section .text]
+ ..@56.next:
+%line 530+1 test.bas
+jmp ..@59.begin
+..@59.begin:
+pop rax
+pop rdx
+pop qword rcx
+mov [.ARG_2 + rbx], rcx
+push rdx
+push rax
+mov rax, [.ARG_2 + rbx]
+%line 530+1 test.bas
+jmp ..@60.begin
+..@60.begin:
+pop rax
+pop rdx
+pop qword rcx
+mov [.ARG_1 + rbx], rcx
+push rdx
+push rax
+mov rax, [.ARG_1 + rbx]
+%line 71+1 test.bas
+..@61.whilepoint:
+mov qword [BASIC_CONTPOINTER_GLOBAL + rbx], ..@61.whilepoint
+%line 40+1 test.bas
+ mov rdx, .zerome
+ mov rax, QWORD [rdx + rbx]
+ mov rdx, .char1
+ mov QWORD [rdx + rbx], rax
+%line 40+1 test.bas
+ mov rdx, .zerome
+ mov rax, QWORD [rdx + rbx]
+ mov rdx, .char2
+ mov QWORD [rdx + rbx], rax
+%line 504+1 test.bas
+ mov rax, qword [.ARG_1 + rbx]
+ mov cl, byte [rax]
+ mov byte [.char1 + rbx], cl
+%line 504+1 test.bas
+ mov rax, qword [.ARG_2 + rbx]
+ mov cl, byte [rax]
+ mov byte [.char2 + rbx], cl
+%line 77+1 test.bas
+ mov rax, qword [.char1 + rbx]
+ mov rcx, qword [.zerome + rbx]
+ cmp rax, rcx
+ jne ..@66.false
+ mov rax, 0
+ mov al, 1
+ mov byte [BASIC_RES_GLOBAL_GC_1 + rbx], al
+ jmp ..@66.end
+ ..@66.false:
+ mov rax, 0
+ mov al, 0
+ mov byte [BASIC_RES_GLOBAL_GC_1 + rbx], al
+ ..@66.end:
+%line 206+1 test.bas
+ mov rax, qword [.char1 + rbx]
+ mov rcx, qword [.char2]
+ cmp rax, rcx
+ je ..@67.false
+ mov rax, 0
+ mov al, 1
+ mov byte [BASIC_RES_GLOBAL_GC_2 + rbx], al
+ jmp ..@67.end
+ ..@67.false:
+ mov rax, 0
+ mov al, 0
+ mov byte [BASIC_RES_GLOBAL_GC_2 + rbx], al
+ ..@67.end:
+%line 399+1 test.bas
+ mov rax, qword [.ARG_1 + rbx]
+ add rax, qword [.incrementer + rbx]
+%line 399+1 test.bas
+ mov rax, qword [.ARG_2 + rbx]
+ add rax, qword [.incrementer + rbx]
+%line 472+1 test.bas
+ mov rax, 0
+ mov al, byte [BASIC_RES_GLOBAL_GC_1 + rbx]
+ mov cl, byte [BASIC_RES_GLOBAL_GC_2 + rbx]
+ and al, cl
+ cmp rax, 0
+ jne ..@70.end
+ mov rax, qword [BASIC_CONTPOINTER_GLOBAL]
+ jmp rax
+ ..@70.end:
+%line 497+1 test.bas
+ mov rax, qword [.ret1]
+ mov qword [BASIC_CONTPOINTER_GLOBAL + rbx], rax
+%line 303+1 test.bas
+ mov al, byte [BASIC_RES_GLOBAL_GC_2 + rbx]
+ cmp al, 1
+ je ..@72.end
+ mov rax, qword [BASIC_CONTPOINTER_GLOBAL + rbx]
+ jmp rax
+ ..@72.end:
+%line 343+1 test.bas
+ mov rax, qword [.zerome + rbx]
+ ret
+%line 318+1 test.bas
+.ret1:
+%line 343+1 test.bas
+ mov rax, qword [.incrementer + rbx]
+ ret
+%line 45+1 test.bas
+
+%line 3+1 test.bas
+
+
+[global _start]
+[section .data]
+BASIC_RES_GLOBAL_GC_1: db 0
+BASIC_RES_GLOBAL_GC_2: db 0
+BASIC_CONTPOINTER_GLOBAL: dq 0
+[section .text]
+ _start:
+
+
+
+mov rbx, 0
+%line 359+1 test.bas
+ jmp ..@81.next
+[section .data]
+ .a: db "TEST", 0
+[section .text]
+ ..@81.next:
+%line 359+1 test.bas
+ jmp ..@85.next
+[section .data]
+ .br: db "TEST", 0
+[section .text]
+ ..@85.next:
+%line 359+1 test.bas
+ jmp ..@89.next
+[section .data]
+ .truest: db "TRUE!", 0
+[section .text]
+ ..@89.next:
+%line 359+1 test.bas
+ jmp ..@93.next
+[section .data]
+ .falsest: db "FALSE!", 0
+[section .text]
+ ..@93.next:
+%line 348+1 test.bas
+
+ jmp ..@97.next
+[section .data]
+ .ap: dq .a
+[section .text]
+ ..@97.next:
+%line 348+1 test.bas
+
+ jmp ..@101.next
+[section .data]
+ .brp: dq .br
+[section .text]
+ ..@101.next:
+%line 348+1 test.bas
+
+ jmp ..@105.next
+[section .data]
+ .retval: dq 0
+[section .text]
+ ..@105.next:
+%line 348+1 test.bas
+
+ jmp ..@109.next
+[section .data]
+ .zerome: dq 0
+[section .text]
+ ..@109.next:
+%line 521+1 test.bas
+pop rax
+mov rcx, qword [.ap + rbx]
+push rcx
+push rax
+%line 521+1 test.bas
+pop rax
+mov rcx, qword [.brp + rbx]
+push rcx
+push rax
+%line 331+1 test.bas
+ call compstring
+%line 49+1 test.bas
+ mov qword [.retval + rbx], rax
+%line 497+1 test.bas
+ mov rax, qword [.trueme]
+ mov qword [BASIC_CONTPOINTER_GLOBAL + rbx], rax
+%line 95+1 test.bas
+ mov rax, qword [.retval + rbx]
+ mov rcx, qword [.zerome + rbx]
+ cmp rax, rcx
+ je ..@117.false
+ mov rax, 0
+ mov al, 1
+ mov byte [BASIC_RES_GLOBAL_GC_1 + rbx], al
+ jmp ..@117.end
+ ..@117.false:
+ mov rax, 0
+ mov al, 0
+ mov byte [BASIC_RES_GLOBAL_GC_1 + rbx], al
+ ..@117.end:
+%line 53+1 test.bas
+ mov al, byte [BASIC_RES_GLOBAL_GC_1 + rbx]
+ cmp al, 0
+ je ..@118.end
+ mov rax, qword [BASIC_CONTPOINTER_GLOBAL]
+ jmp rax
+ ..@118.end:
+%line 5+1 sysBASICx64_linux.asm
+ mov rcx, 0
+ mov rsi, .falsest
+ add rsi, rbx
+ ..@119.BASICPRINT_stringlength_loop:
+ inc rcx
+ inc rsi
+ cmp byte [rsi], 0
+ jne ..@119.BASICPRINT_stringlength_loop
+ mov rax, 1
+ mov rdi, 1
+ mov rsi, .falsest
+ add rsi, rbx
+ mov rdx, rcx
+ syscall
+%line 24+1 test.bas
+ mov rax, 1
+ mov rdi, 1
+ mov rsi, ..@120.ENDINGBASIC_TERMINATIONMSG
+ add rsi, rbx
+ mov rdx, ..@120.ENDINGBASIC_TERMINATIONMSG_LENGTH
+ syscall
+ mov rax, 60
+ mov rdi, 0
+ syscall
+ ..@120.ENDINGBASIC_TERMINATIONMSG: db "Program self-terminated.", 10, 0
+ ..@120.ENDINGBASIC_TERMINATIONMSG_LENGTH: equ $ - ..@120.ENDINGBASIC_TERMINATIONMSG
+%line 318+1 test.bas
+.trueme:
+%line 5+1 sysBASICx64_linux.asm
+ mov rcx, 0
+ mov rsi, .truest
+ add rsi, rbx
+ ..@122.BASICPRINT_stringlength_loop:
+ inc rcx
+ inc rsi
+ cmp byte [rsi], 0
+ jne ..@122.BASICPRINT_stringlength_loop
+ mov rax, 1
+ mov rdi, 1
+ mov rsi, .truest
+ add rsi, rbx
+ mov rdx, rcx
+ syscall
+%line 24+1 test.bas
+ mov rax, 1
+ mov rdi, 1
+ mov rsi, ..@123.ENDINGBASIC_TERMINATIONMSG
+ add rsi, rbx
+ mov rdx, ..@123.ENDINGBASIC_TERMINATIONMSG_LENGTH
+ syscall
+ mov rax, 60
+ mov rdi, 0
+ syscall
+ ..@123.ENDINGBASIC_TERMINATIONMSG: db "Program self-terminated.", 10, 0
+ ..@123.ENDINGBASIC_TERMINATIONMSG_LENGTH: equ $ - ..@123.ENDINGBASIC_TERMINATIONMSG

@@ -1,0 +1,5 @@
+#! /bin/sh
+echo "%include \"sysBASICx64_linux.asm\"" >> $2
+lua SYNTOV.lua $1 >> $2
+nasm -felf64 $2 -o $1
+ld $1 -o $2

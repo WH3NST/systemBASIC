@@ -1,0 +1,36 @@
+ %include "sysBASICx64_linux.asm"
+
+ %include "stringtoint.bas"
+
+ START_
+
+$var mychar = 0
+$var myint = 0
+
+$var vtwirwcfzpuhsn = 8
+ while | myint < vtwirwcfzpuhsn |
+
+ MOVE_global myfunc.arg1, _start.myint
+
+
+$var aevpisaxtpsjwy = 1
+ \myfunc myint, aevpisaxtpsjwy
+
+ \inttochar myint >> mychar
+
+ PRINT mychar
+
+ ]]]
+
+ END_
+
+
+
+
+
+ myfunc[arg1, arg2]
+
+ arg1 + arg2 >> arg1
+
+ return arg1
+

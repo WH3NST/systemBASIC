@@ -1,0 +1,146 @@
+
+global_condition: use for IFTRUE and all varients CONTINUE, is TRUE/FALSE, is set by COMPARE statements
+global_condition2: AUX condition virtual condition code register, there are 2 condition code registers, set with the COMPAREAUX variant of COMPARE
+contpointer: used for CONTINUE statement
+virtual argument stack: This stack is pushed to with ARG_i and popped to with ARG_o, it is a stack is intended to contain all of the arguments for functions. It may or may not be directly implemented with the machine stack
+
+the size of all "integer" variables in this language is implied to be the same size as a pointer on the target architecture. Integer variables were primarily intended to serve as pointers or to hold small values, if you want your program to be portable to 32 bit arch's dont
+push them much beyond 4 billion, for 16 bit, 60000 (overflow behavior is undefined)
+
+1 byte is always assumed to be 8 bits as on x86
+
+language keywords use the <name>_<varient> format, where NAME is the name of the functionality, and <varient> provides a subvarient of the functionality, such as the ARITH arithmetic keyword having 4 possibilities of ADD SUB DIV MUL, it also prevents name collisions in assemblers since this language can be implemented with assembly macro's. In-language functions dont have to use this naming convention, but you can if you want to.
+(also all language keyword names are ALL CAPS, the varient is lower case)
+
+$label implies a static pointer built into at compilation time, $variable means it is passed a standardly sized variable
+START_: DONE
+Do everything necissary to get program capable of running, store base adress of code because systemBASIC generates PIE
+
+END_: DONE
+	terminate program
+
+CONTINUE_: DONE
+	skip over if global_condition = TRUE, go to contpointer if false
+
+NOT_: DONE
+	notted continue, skip over if global_condition = FALSE, go to contpointer if true
+
+note: continue and ncontinue are intended to terminate loops
+
+WHILE_: DONE
+	set contpointer to THIS location, combine with COMPARE statement
+	
+COMPARE_ #flag $variable1, $variable2: DONE
+	comparison
+	flag les:
+		if variable 1 is less than variable2, set gc to true, else false
+	flag gre:
+		if variable 1 is greater than variable2, set gc to true, else false
+	flag leq:
+		if variable 1 is less than variable2, set gc to true, else false
+	flag geq:
+		if variable 1 is greater than variable2, set gc to true, else false
+	flag eq: DONE
+	if variable 1 = variable 2, set gc to TRUE, else false
+	flag neq: DONE
+	if variable 1 = variable 2, set GC to FALSE, else true
+
+GOTO_ $label: DONE
+	jump to the code at $label
+	
+	
+GOTO_dyn $variable: DONE
+	jump to the code at $variable
+
+GOSUB_ $label: DONE
+	call $label (put return adress in place for return to find it)
+
+GOSUB_dyn $variable: DONE
+	call $variable (put return adress in place for return to find it)
+	
+RETURN_ $variable: DONE
+	return to place after last GOSUB, put $variable into accumulator
+
+STORE_ $variable: DONE
+	put contents of accumulator into $variable (use with RETURN & GOSUB)
+
+DIM_: DONE
+	define integer of the systems pointer size here, program should be able to skip over it
+	
+STRING_: DONE
+	define string here, program should be able to skip over it
+
+DIM_string $variable $variable2: DONE
+	reserve $variable2 bytes for string $variable	
+
+ARITH_: #flag, $variable, &variable2 DONE
+	arithmetic
+	if #flag = add: DONE
+		add $variable, $variable2, put result in accumulator
+	if #flag = sub: DONE
+		subtract $variable, $variable2, put result in accumulator
+	if #flag = mul: DONE
+		multiply $variable, $variable2, put result in accumulator
+	if #flag = div: DONE?
+		divide $variable, $variable2, put result in accumulator
+
+MOVE_ $variable, $variable2: DONE
+	copy $variable2 to $variable
+
+LABEL_ 1
+put a named label at this point in the program
+
+DATA_ DONE
+same as DIM_string but without the garunteed 0 at the end to terminate
+
+XOR_ DONE
+jump to contpointer only if one of both global conditions is true
+
+AND_ DONE
+jump to contpointer only if both global conditions are true
+
+OR_ DONE
+jump to contpointer if either global conditions are true
+
+NOR_ DONE
+jump to contpointer if neither global condition not true
+
+NAND_ DONE
+jump to contpointer if neither global conditions are true
+
+NXOR_ DONE
+do not jump to contpointer if (ONLY) one of the global conditions are true
+
+COMPAREAUX_ DONE
+	same as compare, except it sets the auxiliary condition code instead of the main one for boolean logic
+
+CONTINUEAUX_ DONE
+	same as continue, but uses aux condition code
+
+NOTAUX_ DONE
+	same as not, but uses aux condition code
+
+IFTRUE_ $variable DONE
+set contpointer to $variable
+
+PEEK_ $variable $variable2: DONE
+	move 1 byte at address $variable, into bottom byte of $variable2 
+
+
+POKE_ $variable $variable2: DONE
+	move bottom 1 byte of $variable2 into the byte at adress $variable
+
+ARG_i 1 DONE
+	push $variable1 onto virtual argument stack
+
+ARG_o, 1 DONE
+	pop top of virtual argument stack into $variable1
+
+###AUXILIARY FUNCTIONALITY###
+these functions are pretty common, but may not be on all systems
+PRINT $label DONE
+	display all characters between $label and the next null (0) byte to the terminal
+	
+READ $label
+READ characters from STDIN, put starting at $label
+

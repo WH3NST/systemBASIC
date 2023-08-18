@@ -1,0 +1,115 @@
+FUNDAMENTAL VALUES:
+global_condition: use for IF/ELSE and some loops, is TRUE/FALSE
+global_condition2:
+contpointer: used for CONTINUE statement
+ARG: function argument
+ARG2: function argument
+ARG3: function argument
+ARG4: function argument
+ARG5: function argument
+
+
+START_:
+Do everything necissary to get program capable of running, store base adress of code because systemBASIC generates PIE
+
+END_:
+	terminate program
+
+CONTINUE_:
+	skip over if global_condition = TRUE, go to contpointer if false
+
+NOT_:
+	notted continue, skip over if global_condition = FALSE, go to contpointer if true
+
+note: continue and ncontinue are intended to terminate loops
+
+WHILE_:
+	set contpointer to THIS location, combine with COMPARE statement
+	
+COMPARE_ #flag $variable1, $variable2:
+	comparison
+	flag <:
+		if variable 1 is less than variable2, set gc to true, else false
+	flag >:
+		if variable 1 is greater than variable2, set gc to true, else false
+	flag =<:
+		if variable 1 is less than variable2, set gc to true, else false
+	flag =>:
+		if variable 1 is greater than variable2, set gc to true, else false
+	flag ==:
+	if variable 1 = variable 2, set gc to TRUE, else false
+	flag !=:
+	if variable 1 = variable 2, set GC to FALSE, else true
+
+GOTO_ $variable:
+	jump to the code at $variable
+
+GOSUB_ $variable:
+	call $variable (put return adress in place for return to find it)
+	
+RETURN_ $variable:
+	return to place after last GOSUB, put $variable into accumulator
+
+STORE_ $variable:
+	put contents of accumulator into $variable (use with RETURN & GOSUB)
+
+DATA_ $variable, $variable2:
+jump ahead $variable bytes, and reserve those bytes for whatever is needed (LABEL STARTS AT RESERVED BYTES NOT JUMP STATEMENT), label is $variable2
+
+ARITH_: #flag, $variable, #variabl2
+	arithmetic
+	if #flag = +:
+		add $variable, $variable2, put result in accumulator
+	if #flag = -:
+		subtract $variable, $variable2, put result in accumulator
+	if #flag = *:
+		multiply $variable, $variable2, put result in accumulator
+	if #flag = /:
+		divide $variable, $variable2, put result in accumulator
+		
+XOR_
+jump to contpointer only if one of both global conditions is true
+
+AND_
+jump to contpointer only if both global conditions are true
+
+OR_
+jump to contpointer if either global conditions are true
+
+NOR_
+jump to contpointer if neither global condition not true
+
+NORAUX_
+jump to contpointer if neither global condition AUX not true
+
+NAND_
+jump to contpointer if neither global conditions are true
+
+NXOR_
+do not jump to contpointer if (ONLY) one of the global conditions are true
+
+COMPAREAUX_
+	same as compare, except it sets the auxiliary condition code instead of the main one for boolean logic
+
+CONTINUEAUX_
+	same as continue, but uses aux condition code
+
+NOTAUX_
+	same as not, but uses aux condition code
+
+IFTRUE_ $variable
+set contpointer to $variable
+
+_MOVE $variable, $variable2
+	copy $variable2 to $variable
+
+
+
+
+
+
+###AUXILIARY FUNCTIONALITY###
+these functions are pretty common, but may not be on all systems
+PRINT $variable
+	display all characters between $variable and the next null (0) byte to the terminal
+

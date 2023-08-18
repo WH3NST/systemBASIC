@@ -1,0 +1,4 @@
+;FUNCTION COPY
+;ALGORITHM
+;if opcode = C3, CB, C2, or CA -- COUNT++ then if COUNT++ = number of rets in instruction (passed as argument to FOCOP), then copy everything between the pointer to the function to the final RET to the new address
+;to make function portable, it must get its own address and place it in RBX, reset RBX to whatever it was when it was called just before returning

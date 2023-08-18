@@ -1,0 +1,18 @@
+#use these variables to describe how to build on UNIX systems
+export SB_MACROS="/etc/systemBASIC/sysBASICx64_linux.asm"
+export SB_SYNTAX="/etc/systemBASIC/SYNTEV.lua"
+export SB_EVALUATION="/etc/systemBASIC/ARGUMENTATION.lua"
+export SB_BUILDSCRIPT="/etc/systemBASIC/BUILDSCRIPT"
+export SB_HEADER="/etc/systemBASIC/header"
+
+
+
+
+
+
+
+
+
+export ARG1=$1
+export ARG2=$2
+eval $SB_BUILDSCRIPT

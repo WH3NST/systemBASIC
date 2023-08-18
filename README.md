@@ -2,7 +2,7 @@
 This is a language I made a while back while teaching myself assembly. I recently have decided to pick up the peices and resume work on it after forgetting about it for a long time. There is an intermediate language specified in SPECIFICATION.TXT, which is currently implemented using NASM macro's, but should be easy to re-implement using other means. To improve the syntax and expressability, there are several "layers" of lua processing. 
 
 WARNING:
-Currently, the NASM macro based intermediate language produces very bad machine code and the lua processor is severely unreadable. I hope it can get everything cleaned up and more efficient eventually. The project directory also doesn't really have a structure which I want to tackle first.
+Currently, the NASM macro based intermediate language produces very bad machine code and the lua processor is severely unreadable. I hope it can get everything cleaned up and more efficient eventually. The project directory also doesn't really have a structure which I want to tackle first. There is some english I am pretty sure I wrote at 3 AM too so don't expect all of it to be understandable either.
 
 
 FEATURES:
